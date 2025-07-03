@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impulse Invitation Generator</title>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lora:wght@400;700&display=swap" as="style">
+  <link rel="preload" href="https://via.placeholder.com/250?text=SC" as="image">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6d0e3a; /* Deep burgundy */
+      --secondary: #1a237e; /* Deep navy */
+      --accent: #d4af37; /* Metallic gold */
+      --ivory: #f8edeb; /* Soft ivory */
+      --dark: #1c2526; /* Almost black */
+      --gradient: linear-gradient(135deg, #6d0e3a, #b71c1c, #1a237e);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lora', serif, sans-serif;
+      background: var(--gradient);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      perspective: 1200px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Animated Background Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      animation: floatParticle 12s infinite linear;
+    }
+
+    @keyframes floatParticle {
+      0% { transform: translateY(0) scale(1); opacity: 0.4; }
+      50% { transform: translateY(-100vh) scale(1.3); opacity: 0.1; }
+      100% { transform: translateY(-200vh) scale(1); opacity: 0; }
+    }
+
+    /* Form Styling */
+    .form-container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(109, 14, 58, 0.2), transparent);
+      transform: rotate(45deg);
+      z-index: -1;
+    }
+
+    .form-container:hover {
+      transform: translateY(-8px) rotateX(5deg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .form-logo {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      display: block;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      animation: pulse 2s infinite;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif, sans-serif;
+      font-size: 2.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 25px;
+      text-align: center;
+      text-shadow: none;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: center;
+      transition: transform 0.5s ease;
+      border-radius: 2px;
+    }
+
+    .form-container:hover h1::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .floating-label {
+      position: absolute;
+      left: 15px;
+      top: 12px;
+      color: #666;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      background: white;
+      padding: 0 6px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: 'Lora', serif, sans-serif;
+    }
+
+    input {
+      padding: 15px 18px;
+      width: 100%;
+      font-size: 15px;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.9);
+      font-family: 'Lora', serif, sans-serif;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(109, 14, 58, 0.3);
+      transform: translateY(-2px);
+    }
+
+    input:focus + .floating-label,
+    input:not(:placeholder-shown) + .floating-label {
+      top: -10px;
+      left: 12px;
+      font-size: 12px;
+      color: var(--secondary);
+      font-weight: 700;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 16px;
+      font-weight: 700;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(26, 35, 126, 0.4);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      margin: 10px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      font-family: 'Cinzel', serif, sans-serif;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(26, 35, 126, 0.5);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #b71c1c, var(--primary));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    /* Invitation Card Styling (Hidden) */
+    .invitation-card {
+      background: var(--ivory);
+      border-radius: 20px;
+      padding: 60px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      overflow: hidden;
+      width: 1500px; /* 5 inches at 300 DPI */
+      height: 2100px; /* 7 inches at 300 DPI */
+      border: 6px solid var(--accent);
+      background: linear-gradient(135deg, var(--ivory) 0%, #fff3e0 100%);
+      z-index: 0;
+    }
+
+    .invitation-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: var(--gradient);
+      z-index: 0;
+    }
+
+    .invitation-card::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      right: -15%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(109, 14, 58, 0.15), transparent);
+      z-index: 0;
+    }
+
+    .invitation-card .logo {
+      width: 250px;
+      height: 250px;
+      margin: 40px auto;
+      border: 4px solid var(--accent);
+      border-radius: 50%;
+      display: block;
+      z-index: 1;
+    }
+
+    .invitation-header {
+      font-family: 'Great Vibes', cursive, sans-serif;
+      font-size: 8rem;
+      color: var(--secondary);
+      margin-bottom: 20px;
+      text-align: center;
+      letter-spacing: 2px;
+      z-index: 1;
+    }
+
+    .invitation-subheader {
+      font-family: 'Cinzel', serif, sans-serif;
+      font-size: 3.5rem;
+      color: var(--primary);
+      margin-bottom: 40px;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+
+    .invitation-body {
+      font-size: 2.8rem;
+      line-height: 1.8;
+      color: var(--dark);
+      margin-bottom: 40px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+      border-left: 8px solid var(--accent);
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: 'Lora', serif, sans-serif;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .invitation-footer {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 6px dashed var(--accent);
+      text-align: center;
+      z-index: 1;
+    }
+
+    .event-details {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .event-item {
+      background: rgba(255, 255, 255, 0.3);
+      padding: 30px;
+      border-radius: 15px;
+      margin: 15px;
+      min-width: 300px;
+      text-align: center;
+      font-size: 2.5rem;
+      border: 3px solid var(--accent);
+      z-index: 1;
+    }
+
+    .event-item div:first-child {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+    }
+
+    .invitation-signature {
+      font-family: 'Great Vibes', cursive, sans-serif;
+      font-size: 4rem;
+      color: var(--secondary);
+      margin-top: 40px;
+      text-align: right;
+      padding-right: 60px;
+      z-index: 1;
+    }
+
+    .invitation-signature::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 250px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent));
+      z-index: 0;
+    }
+
+    .floating-icon {
+      position: absolute;
+      opacity: 0.3;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .icon-1 { top: 5%; left: 5%; font-size: 7rem; color: var(--primary); }
+    .icon-2 { top: 60%; right: 5%; font-size: 8rem; color: var(--secondary); }
+    .icon-3 { bottom: 5%; left: 10%; font-size: 6rem; color: var(--accent); }
+    .icon-4 { bottom: 10%; right: 15%; font-size: 6.5rem; color: var(--accent); }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-40px) rotate(8deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .pulse { animation: pulse 2s infinite; }
+
+    /* Loading spinner */
+    .spinner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: white;
+      font-size: 2rem;
+      font-family: 'Cinzel', serif;
+    }
+
+    .spinner::after {
+      content: '';
+      width: 80px;
+      height: 80px;
+      border: 8px solid rgba(255, 255, 255, 0.3);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      position: absolute;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .form-container { padding: 25px; max-width: 90%; }
+      .action-buttons { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 300px; margin: 8px 0; }
+      .form-logo { width: 80px; height: 80px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="container">
+    <div id="form-container" class="form-container animate__animated animate__fadeIn">
+      <img src="logo.png" alt="Saraswati College Logo" class="form-logo">
+      <h1>✨ Impulse 2025 Invitation ✨</h1>
+      
+      <div class="form-group animate__animated animate__fadeIn animate__delay-1s">
+        <input type="text" id="fullName" placeholder=" " required />
+        <label class="floating-label">Your Full Name</label>
+      </div>
+      
+      <div class="form-group animate__animated animate__fadeIn animate__delay-1s">
+        <input type="text" id="className" placeholder="" required />
+        <label class="floating-label">Professions(e.g.,Student, professor)</label>
+      </div>
+      
+      <div class="action-buttons animate__animated animate__fadeIn animate__delay-2s">
+        <button class="btn pulse" onclick="generateInvitation()">
+          Generate My Invitation
+        </button>
+      </div>
+    </div>
+
+    <div id="invitation-container">
+      <div class="invitation-card">
+        <div class="floating-icon icon-1">🌹</div>
+        <div class="floating-icon icon-2">✨</div>
+        <div class="floating-icon icon-3">🎉</div>
+        <div class="floating-icon icon-4">🌟</div>
+        
+        <img src="logo.png" alt="Saraswati College Logo" class="logo">
+        <div class="invitation-header">Impulse 2025</div>
+        <div class="invitation-subheader">Saraswati College Annual Festival</div>
+        
+        <div class="invitation-body" id="personalMessage">
+          <!-- Filled by JavaScript -->
+        </div>
+        
+        <div class="invitation-footer">
+          <strong>Event Details</strong>
+          <div class="event-details">
+            <div class="event-item">
+              <div>📅</div>
+              <div>Sports Day</div>
+              <div>July 10, 2025</div>
+            </div>
+            <div class="event-item">
+              <div>🎭</div>
+              <div>Cultural Day</div>
+              <div>July 11, 2025</div>
+            </div>
+            <div class="event-item">
+              <div>🎓</div>
+              <div>Farewell</div>
+              <div>July 12, 2025</div>
+            </div>
+          </div>
+          <div style="margin-top: 30px; font-size: 2.5rem;">📍 Venue: Saraswati College, Shegaon Auditorium</div>
+        </div>
+        
+        <div class="invitation-signature">Saraswati College Organizing Committee</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    // Preload logo image
+    const logoImage = new Image();
+    logoImage.src ='logo.png';
+    logoImage.crossOrigin = 'Anonymous';
+    logoImage.onerror = () => {
+      console.error('Logo failed to load, using fallback');
+      logoImage.src ='logo.png'; // Fallback to same placeholder
+    };
+
+    // Preload fonts
+    document.fonts.ready.then(() => {
+      console.log('Fonts loaded');
+    });
+
+    // Generate particles for background
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.width = `${Math.random() * 6 + 3}px`;
+        particle.style.height = particle.style.width;
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.top = `${Math.random() * 100}vh`;
+        particle.style.animationDelay = `${Math.random() * 12}s`;
+        particlesContainer.appendChild(particle);
+      }
+    }
+    createParticles();
+
+    function generateInvitation() {
+      const fullName = document.getElementById('fullName').value.trim();
+      const className = document.getElementById('className').value.trim();
+
+      if (!fullName || !className) {
+        alert("Please enter both your name and class.");
+        return;
+      }
+
+      // Show loading spinner
+      const spinner = document.createElement('div');
+      spinner.className = 'spinner';
+      spinner.textContent = 'Generating your invitation...';
+      document.body.appendChild(spinner);
+
+      // Update the invitation content
+      const message = `Dear ${fullName},\n\nSaraswati College invites you to "Impulse 2025", the annual festival hosted by Saraswati College  Join us for an enchanting three-day celebration of vibrant sports, captivating cultural performances, and heartfelt farewells.\n\nYour presence will illuminate this grand event. We eagerly await you!`;
+      
+      document.getElementById('personalMessage').innerHTML = 
+        message.split('\n\n').map(para => 
+          `<p>${para.replace(/\n/g, '<br>')}</p>`
+        ).join('');
+
+      // Create a temporary visible container for capture
+      const tempContainer = document.createElement('div');
+      tempContainer.style.position = 'fixed';
+      tempContainer.style.left = '0';
+      tempContainer.style.top = '0';
+      tempContainer.style.width = '1500px';
+      tempContainer.style.height = '2100px';
+      tempContainer.style.visibility = 'hidden';
+      tempContainer.style.zIndex = '9998';
+      tempContainer.style.overflow = 'visible';
+      
+      // Clone the invitation card with all styles
+      const clonedInvitation = document.querySelector('.invitation-card').cloneNode(true);
+      clonedInvitation.style.position = 'absolute';
+      clonedInvitation.style.left = '0';
+      clonedInvitation.style.top = '0';
+      clonedInvitation.style.visibility = 'visible';
+      clonedInvitation.style.opacity = '1';
+      clonedInvitation.style.display = 'block';
+      
+      // Ensure fonts are loaded
+      const style = document.createElement('style');
+      style.textContent = `
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lora:wght@400;700&display=swap');
+      `;
+      tempContainer.appendChild(style);
+      tempContainer.appendChild(clonedInvitation);
+      document.body.appendChild(tempContainer);
+
+      // Wait for fonts and images to load
+      setTimeout(() => {
+        html2canvas(clonedInvitation, {
+          scale: 3, // Higher scale for better quality
+          logging: false,
+          useCORS: true,
+          backgroundColor: '#f8edeb',
+          width: 1500,
+          height: 2100,
+          scrollX: 0,
+          scrollY: 0,
+          letterRendering: true,
+          allowTaint: true,
+          onclone: (clonedDoc) => {
+            // Ensure fonts are applied in the cloned document
+            const style = clonedDoc.createElement('style');
+            style.textContent = `
+              @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lora:wght@400;700&display=swap');
+              
+              .invitation-header {
+                font-family: 'Great Vibes', cursive !important;
+              }
+              .invitation-subheader {
+                font-family: 'Cinzel', serif !important;
+              }
+              .invitation-body, .invitation-footer, .event-item, .invitation-signature {
+                font-family: 'Lora', serif !important;
+              }
+            `;
+            clonedDoc.head.appendChild(style);
+            
+            // Replace logo with loaded image
+            const logos = clonedDoc.querySelectorAll('logo.png');
+            logos.forEach(logo => {
+              logo.src = logoImage.src;
+              logo.crossOrigin = 'Anonymous';
+            });
+          }
+        }).then(canvas => {
+          const link = document.createElement('a');
+          const name = fullName.replace(/\s+/g, '-');
+          link.download = `impulse-2025-invitation-${name}.png`;
+          link.href = canvas.toDataURL('logo.png', 1.0);
+          link.click();
+          
+          // Clean up
+          document.body.removeChild(tempContainer);
+          document.body.removeChild(spinner);
+          
+          // Show confetti
+          showConfetti();
+          
+          // Reset form
+          document.getElementById('fullName').value = '';
+          document.getElementById('className').value = '';
+        }).catch(err => {
+          console.error("Error generating image:", err);
+          alert("Error generating download. Please try again.");
+          document.body.removeChild(tempContainer);
+          document.body.removeChild(spinner);
+        });
+      }, 1500); // Increased delay to ensure everything loads
+    }
+
+    function showConfetti() {
+      const colors = ['#6d0e3a', '#1a237e', '#d4af37', '#b71c1c', '#f8edeb'];
+      const container = document.querySelector('.container');
+      
+      for (let i = 0; i < 80; i++) {
+        const confetti = document.createElement('div');
+        confetti.innerHTML = ['🌹', '✨', '🎉', '🌟', '💫'][Math.floor(Math.random() * 5)];
+        confetti.style.position = 'fixed';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = -20 + 'px';
+        confetti.style.fontSize = (Math.random() * 18 + 8) + 'px';
+        confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.zIndex = '1000';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.userSelect = 'none';
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        container.appendChild(confetti);
+        
+        const animationDuration = Math.random() * 3 + 2;
+        confetti.style.animation = `fall ${animationDuration}s linear forwards`;
+        
+        setTimeout(() => {
+          confetti.remove();
+        }, animationDuration * 1000);
+      }
+    }
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes fall {
+        0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+        100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
