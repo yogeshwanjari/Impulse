@@ -4,18 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Impulse Invitation Generator</title>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lora:wght@400;700&display=swap" as="style">
-  <link rel="preload" href="https://via.placeholder.com/250?text=SC" as="image">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" as="style">
+  <link rel="preload" href="logo.png" as="image">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #6d0e3a; /* Deep burgundy */
-      --secondary: #1a237e; /* Deep navy */
-      --accent: #d4af37; /* Metallic gold */
-      --ivory: #f8edeb; /* Soft ivory */
-      --dark: #1c2526; /* Almost black */
-      --gradient: linear-gradient(135deg, #6d0e3a, #b71c1c, #1a237e);
+      --primary: #8B0000; /* Rich crimson */
+      --secondary: #0D1B2A; /* Deep midnight blue */
+      --accent: #FFD700; /* Vibrant gold */
+      --ivory: #FFF8E7; /* Warm ivory */
+      --dark: #1C2526; /* Almost black */
+      --gradient: linear-gradient(135deg, #8B0000, #C71585, #0D1B2A);
+      --glow: rgba(255, 215, 0, 0.5);
     }
 
     * {
@@ -25,7 +26,7 @@
     }
 
     body {
-      font-family: 'Lora', serif, sans-serif;
+      font-family: 'Playfair Display', serif;
       background: var(--gradient);
       min-height: 100vh;
       display: flex;
@@ -57,30 +58,32 @@
 
     .particle {
       position: absolute;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 215, 0, 0.3);
       border-radius: 50%;
-      animation: floatParticle 12s infinite linear;
+      box-shadow: 0 0 10px var(--glow);
+      animation: floatParticle 10s infinite ease-in-out;
     }
 
     @keyframes floatParticle {
-      0% { transform: translateY(0) scale(1); opacity: 0.4; }
-      50% { transform: translateY(-100vh) scale(1.3); opacity: 0.1; }
-      100% { transform: translateY(-200vh) scale(1); opacity: 0; }
+      0% { transform: translateY(0) scale(1); opacity: 0.5; }
+      50% { transform: translateY(-120vh) scale(1.4); opacity: 0.2; }
+      100% { transform: translateY(-240vh) scale(1); opacity: 0; }
     }
 
     /* Form Styling */
     .form-container {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: 25px;
+      padding: 50px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(15px);
       transform-style: preserve-3d;
       transition: all 0.5s ease;
       position: relative;
       overflow: hidden;
       max-width: 600px;
       margin: 0 auto;
+      border: 2px solid var(--accent);
     }
 
     .form-container::before {
@@ -90,51 +93,53 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(109, 14, 58, 0.2), transparent);
-      transform: rotate(45deg);
+      background: radial-gradient(circle, rgba(139, 0, 0, 0.3), transparent);
+      transform: rotate(30deg);
       z-index: -1;
     }
 
     .form-container:hover {
-      transform: translateY(-8px) rotateX(5deg);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      transform: translateY(-10px) rotateX(8deg);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
     }
 
     .form-logo {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 20px;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 30px;
       display: block;
       border-radius: 50%;
-      border: 3px solid var(--accent);
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      animation: pulse 2s infinite;
+      border: 4px solid var(--accent);
+      box-shadow: 0 0 15px var(--glow), 0 5px 15px rgba(0, 0, 0, 0.3);
+      animation: glowPulse 2.5s infinite ease-in-out;
+      object-fit: cover;
+      background: white;
     }
 
     h1 {
-      font-family: 'Cinzel', serif, sans-serif;
-      font-size: 2.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
       background: var(--gradient);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       text-align: center;
-      text-shadow: none;
+      text-shadow: 0 0 10px var(--glow);
     }
 
     h1::after {
       content: '';
       position: absolute;
-      bottom: -8px;
+      bottom: -10px;
       left: 50%;
-      width: 80px;
-      height: 4px;
+      width: 100px;
+      height: 5px;
       background: var(--accent);
       transform: translateX(-50%) scaleX(0);
       transform-origin: center;
       transition: transform 0.5s ease;
-      border-radius: 2px;
+      border-radius: 3px;
     }
 
     .form-container:hover h1::after {
@@ -142,7 +147,7 @@
     }
 
     .form-group {
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       position: relative;
     }
 
@@ -150,65 +155,65 @@
       position: absolute;
       left: 15px;
       top: 12px;
-      color: #666;
+      color: #555;
       transition: all 0.3s ease;
       pointer-events: none;
       background: white;
-      padding: 0 6px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 14px;
-      font-family: 'Lora', serif, sans-serif;
+      padding: 0 8px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      font-family: 'Lora', serif;
     }
 
     input {
-      padding: 15px 18px;
+      padding: 16px 20px;
       width: 100%;
-      font-size: 15px;
-      border: 2px solid rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
+      font-size: 16px;
+      border: 2px solid rgba(0, 0, 0, 0.15);
+      border-radius: 15px;
       transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.9);
-      font-family: 'Lora', serif, sans-serif;
+      background: rgba(255, 255, 255, 0.95);
+      font-family: 'Lora', serif;
     }
 
     input:focus {
       outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(109, 14, 58, 0.3);
-      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3);
+      transform: translateY(-3px);
     }
 
     input:focus + .floating-label,
     input:not(:placeholder-shown) + .floating-label {
-      top: -10px;
+      top: -12px;
       left: 12px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--secondary);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .btn {
-      padding: 15px 30px;
-      font-size: 16px;
+      padding: 16px 35px;
+      font-size: 18px;
       font-weight: 700;
       background: var(--gradient);
       color: white;
       border: none;
-      border-radius: 40px;
+      border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 8px 25px rgba(26, 35, 126, 0.4);
+      box-shadow: 0 10px 30px rgba(13, 27, 42, 0.5);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      margin: 10px;
+      margin: 12px;
       position: relative;
       overflow: hidden;
       z-index: 1;
-      font-family: 'Cinzel', serif, sans-serif;
+      font-family: 'Cinzel', serif;
     }
 
     .btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 12px 30px rgba(26, 35, 126, 0.5);
+      transform: translateY(-4px) scale(1.06);
+      box-shadow: 0 15px 35px rgba(13, 27, 42, 0.6);
     }
 
     .btn::before {
@@ -218,10 +223,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, #b71c1c, var(--primary));
+      background: linear-gradient(45deg, #C71585, var(--primary));
       z-index: -1;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
     }
 
     .btn:hover::before {
@@ -232,23 +237,38 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 30px;
+      margin-top: 35px;
+    }
+
+    .counter {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: var(--secondary);
+      font-family: 'Lora', serif;
+      font-weight: 700;
+      text-shadow: 0 0 5px var(--glow);
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 15px;
+      border: 2px solid var(--accent);
+      animation: fadeIn 1s ease-in;
     }
 
     /* Invitation Card Styling (Hidden) */
     .invitation-card {
       background: var(--ivory);
-      border-radius: 20px;
-      padding: 60px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-radius: 25px;
+      padding: 80px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
       position: absolute;
       left: -9999px;
       top: -9999px;
       overflow: hidden;
       width: 1500px; /* 5 inches at 300 DPI */
       height: 2100px; /* 7 inches at 300 DPI */
-      border: 6px solid var(--accent);
-      background: linear-gradient(135deg, var(--ivory) 0%, #fff3e0 100%);
+      border: 8px solid var(--accent);
+      background: linear-gradient(135deg, var(--ivory) 0%, #FFFACD 100%);
       z-index: 0;
     }
 
@@ -258,7 +278,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 40px;
+      height: 50px;
       background: var(--gradient);
       z-index: 0;
     }
@@ -266,69 +286,72 @@
     .invitation-card::after {
       content: '';
       position: absolute;
-      bottom: -15%;
-      right: -15%;
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(109, 14, 58, 0.15), transparent);
+      bottom: -20%;
+      right: -20%;
+      width: 1000px;
+      height: 1000px;
+      background: radial-gradient(circle, rgba(139, 0, 0, 0.2), transparent);
       z-index: 0;
     }
 
     .invitation-card .logo {
-      width: 250px;
-      height: 250px;
-      margin: 40px auto;
-      border: 4px solid var(--accent);
+      width: 300px;
+      height: 300px;
+      margin: 50px auto;
+      border: 6px solid var(--accent);
       border-radius: 50%;
       display: block;
       z-index: 1;
+      box-shadow: 0 0 20px var(--glow), 0 8px 20px rgba(0, 0, 0, 0.3);
+      object-fit: cover;
+      background: white;
+      animation: glowPulse 2.5s infinite ease-in-out;
     }
 
     .invitation-header {
-      font-family: 'Great Vibes', cursive, sans-serif;
-      font-size: 8rem;
+      font-family: 'Great Vibes', cursive;
+      font-size: 9rem;
       color: var(--secondary);
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       text-align: center;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       z-index: 1;
+      text-shadow: 0 0 10px var(--glow);
     }
 
     .invitation-subheader {
-      font-family: 'Cinzel', serif, sans-serif;
-      font-size: 3.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
       color: var(--primary);
-      margin-bottom: 40px;
+      margin-bottom: 50px;
       text-align: center;
       font-weight: 700;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       z-index: 1;
     }
 
     .invitation-body {
-      font-size: 2.8rem;
+      font-size: 3rem;
       line-height: 1.8;
       color: var(--dark);
-      margin-bottom: 40px;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 20px;
-      border-left: 8px solid var(--accent);
-      max-width: 1200px;
+      margin-bottom: 50px;
+      padding: 50px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 25px;
+      border-left: 10px solid var(--accent);
+      max-width: 1300px;
       margin-left: auto;
       margin-right: auto;
-      font-family: 'Lora', serif, sans-serif;
-      text-align: center;
       z-index: 1;
     }
 
     .invitation-footer {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: var(--dark);
-      margin-top: 40px;
-      padding-top: 30px;
-      border-top: 6px dashed var(--accent);
+      margin-top: 50px;
+      padding-top: 40px;
+      border-top: 8px dashed var(--accent);
       text-align: center;
       z-index: 1;
     }
@@ -337,34 +360,36 @@
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
-      margin-top: 30px;
+      margin-top: 40px;
     }
 
     .event-item {
-      background: rgba(255, 255, 255, 0.3);
-      padding: 30px;
-      border-radius: 15px;
-      margin: 15px;
-      min-width: 300px;
+      background: rgba(255, 255, 255, 0.4);
+      padding: 35px;
+      border-radius: 20px;
+      margin: 20px;
+      min-width: 350px;
       text-align: center;
-      font-size: 2.5rem;
-      border: 3px solid var(--accent);
+      font-size: 2.8rem;
+      border: 4px solid var(--accent);
       z-index: 1;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     .event-item div:first-child {
-      font-size: 3.5rem;
-      margin-bottom: 10px;
+      font-size: 4rem;
+      margin-bottom: 15px;
     }
 
     .invitation-signature {
-      font-family: 'Great Vibes', cursive, sans-serif;
-      font-size: 4rem;
+      font-family: 'Great Vibes', cursive;
+      font-size: 4.5rem;
       color: var(--secondary);
-      margin-top: 40px;
+      margin-top: 50px;
       text-align: right;
-      padding-right: 60px;
+      padding-right: 80px;
       z-index: 1;
+      text-shadow: 0 0 8px var(--glow);
     }
 
     .invitation-signature::before {
@@ -372,35 +397,35 @@
       position: absolute;
       top: 50%;
       left: 0;
-      width: 250px;
-      height: 3px;
+      width: 300px;
+      height: 4px;
       background: linear-gradient(90deg, transparent, var(--accent));
       z-index: 0;
     }
 
     .floating-icon {
       position: absolute;
-      opacity: 0.3;
+      opacity: 0.4;
       z-index: 0;
-      animation: float 6s ease-in-out infinite;
+      animation: float 5s ease-in-out infinite;
     }
 
-    .icon-1 { top: 5%; left: 5%; font-size: 7rem; color: var(--primary); }
-    .icon-2 { top: 60%; right: 5%; font-size: 8rem; color: var(--secondary); }
-    .icon-3 { bottom: 5%; left: 10%; font-size: 6rem; color: var(--accent); }
-    .icon-4 { bottom: 10%; right: 15%; font-size: 6.5rem; color: var(--accent); }
+    .icon-1 { top: 5%; left: 5%; font-size: 8rem; color: var(--primary); }
+    .icon-2 { top: 60%; right: 5%; font-size: 9rem; color: var(--secondary); }
+    .icon-3 { bottom: 5%; left: 10%; font-size: 7rem; color: var(--accent); }
+    .icon-4 { bottom: 10%; right: 15%; font-size: 7.5rem; color: var(--accent); }
 
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-40px) rotate(8deg); }
+      50% { transform: translateY(-50px) rotate(10deg); }
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 15px var(--glow), 0 5px 15px rgba(0, 0, 0, 0.3); }
+      50% { box-shadow: 0 0 25px var(--glow), 0 8px 20px rgba(0, 0, 0, 0.4); }
     }
 
-    .pulse { animation: pulse 2s infinite; }
+    .pulse { animation: glowPulse 2.5s infinite ease-in-out; }
 
     /* Loading spinner */
     .spinner {
@@ -434,12 +459,25 @@
       to { transform: rotate(360deg); }
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     @media (max-width: 768px) {
-      h1 { font-size: 2rem; }
-      .form-container { padding: 25px; max-width: 90%; }
+      h1 { font-size: 2.2rem; }
+      .form-container { padding: 30px; max-width: 90%; }
       .action-buttons { flex-direction: column; align-items: center; }
-      .btn { width: 100%; max-width: 300px; margin: 8px 0; }
-      .form-logo { width: 80px; height: 80px; }
+      .btn { width: 100%; max-width: 300px; margin: 10px 0; }
+      .form-logo { width: 100px; height: 100px; }
+      .counter { font-size: 1rem; padding: 8px 15px; }
+      .invitation-header { font-size: 7rem; }
+      .invitation-subheader { font-size: 3rem; }
+      .invitation-body { font-size: 2.5rem; padding: 30px; }
+      .invitation-footer { font-size: 2.2rem; }
+      .event-item { min-width: 280px; font-size: 2.2rem; }
+      .event-item div:first-child { font-size: 3.2rem; }
+      .invitation-signature { font-size: 3.5rem; }
     }
   </style>
 </head>
@@ -456,8 +494,8 @@
       </div>
       
       <div class="form-group animate__animated animate__fadeIn animate__delay-1s">
-        <input type="text" id="className" placeholder="" required />
-        <label class="floating-label">Professions(e.g.,Student, professor)</label>
+        <input type="text" id="className" placeholder=" " required />
+        <label class="floating-label">Profession (e.g., Student, Professor)</label>
       </div>
       
       <div class="action-buttons animate__animated animate__fadeIn animate__delay-2s">
@@ -465,6 +503,7 @@
           Generate My Invitation
         </button>
       </div>
+      <div class="counter" id="invitationCounter">Invitations Generated: 0</div>
     </div>
 
     <div id="invitation-container">
@@ -501,7 +540,7 @@
               <div>July 12, 2025</div>
             </div>
           </div>
-          <div style="margin-top: 30px; font-size: 2.5rem;">📍 Venue: Saraswati College, Shegaon Auditorium</div>
+          <div style="margin-top: 40px; font-size: 2.8rem;">📍 Venue: Saraswati College, Shegaon Auditorium</div>
         </div>
         
         <div class="invitation-signature">Saraswati College Organizing Committee</div>
@@ -511,13 +550,18 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
+    // Initialize invitation counter from localStorage
+    let invitationCount = localStorage.getItem('invitationCount') ? parseInt(localStorage.getItem('invitationCount')) : 0;
+    const counterElement = document.getElementById('invitationCounter');
+    counterElement.textContent = `Invitations Generated: ${invitationCount}`;
+
     // Preload logo image
     const logoImage = new Image();
-    logoImage.src ='logo.png';
+    logoImage.src = 'logo.png';
     logoImage.crossOrigin = 'Anonymous';
     logoImage.onerror = () => {
       console.error('Logo failed to load, using fallback');
-      logoImage.src ='logo.png'; // Fallback to same placeholder
+      logoImage.src = 'logo.png';
     };
 
     // Preload fonts
@@ -528,14 +572,14 @@
     // Generate particles for background
     function createParticles() {
       const particlesContainer = document.getElementById('particles');
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 30; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
-        particle.style.width = `${Math.random() * 6 + 3}px`;
+        particle.style.width = `${Math.random() * 8 + 4}px`;
         particle.style.height = particle.style.width;
         particle.style.left = `${Math.random() * 100}vw`;
         particle.style.top = `${Math.random() * 100}vh`;
-        particle.style.animationDelay = `${Math.random() * 12}s`;
+        particle.style.animationDelay = `${Math.random() * 10}s`;
         particlesContainer.appendChild(particle);
       }
     }
@@ -546,18 +590,18 @@
       const className = document.getElementById('className').value.trim();
 
       if (!fullName || !className) {
-        alert("Please enter both your name and class.");
+        alert("Please enter both your name and profession.");
         return;
       }
 
       // Show loading spinner
       const spinner = document.createElement('div');
       spinner.className = 'spinner';
-      spinner.textContent = 'Generating your invitation...';
+      spinner.textContent = 'Crafting your stunning invitation...';
       document.body.appendChild(spinner);
 
       // Update the invitation content
-      const message = `Dear ${fullName},\n\nSaraswati College invites you to "Impulse 2025", the annual festival hosted by Saraswati College  Join us for an enchanting three-day celebration of vibrant sports, captivating cultural performances, and heartfelt farewells.\n\nYour presence will illuminate this grand event. We eagerly await you!`;
+      const message = `Dear ${fullName},\n\nSaraswati College cordially invites you to "Impulse 2025", the annual festival hosted by Saraswati College. Join us for an unforgettable three-day celebration filled with exhilarating sports, mesmerizing cultural performances, and heartfelt farewells.\n\nYour presence will make this grand event truly spectacular. We eagerly await you!`;
       
       document.getElementById('personalMessage').innerHTML = 
         message.split('\n\n').map(para => 
@@ -586,9 +630,7 @@
       
       // Ensure fonts are loaded
       const style = document.createElement('style');
-      style.textContent = `
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lora:wght@400;700&display=swap');
-      `;
+      style.textContent = '';
       tempContainer.appendChild(style);
       tempContainer.appendChild(clonedInvitation);
       document.body.appendChild(tempContainer);
@@ -596,87 +638,93 @@
       // Wait for fonts and images to load
       setTimeout(() => {
         html2canvas(clonedInvitation, {
-          scale: 3, // Higher scale for better quality
+          scale: 3,
           logging: false,
           useCORS: true,
-          backgroundColor: '#f8edeb',
+          backgroundColor: '#FFF8E7',
           width: 1500,
           height: 2100,
           scrollX: 0,
           scrollY: 0,
           letterRendering: true,
           allowTaint: true,
-          onclone: (clonedDoc) => {
-            // Ensure fonts are applied in the cloned document
-            const style = clonedDoc.createElement('style');
-            style.textContent = `
-              @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lora:wght@400;700&display=swap');
-              
-              .invitation-header {
-                font-family: 'Great Vibes', cursive !important;
-              }
-              .invitation-subheader {
-                font-family: 'Cinzel', serif !important;
-              }
-              .invitation-body, .invitation-footer, .event-item, .invitation-signature {
-                font-family: 'Lora', serif !important;
-              }
-            `;
-            clonedDoc.head.appendChild(style);
-            
-            // Replace logo with loaded image
-            const logos = clonedDoc.querySelectorAll('logo.png');
-            logos.forEach(logo => {
-              logo.src = logoImage.src;
-              logo.crossOrigin = 'Anonymous';
-            });
-          }
-        }).then(canvas => {
-          const link = document.createElement('a');
-          const name = fullName.replace(/\s+/g, '-');
-          link.download = `impulse-2025-invitation-${name}.png`;
-          link.href = canvas.toDataURL('logo.png', 1.0);
-          link.click();
-          
-          // Clean up
-          document.body.removeChild(tempContainer);
-          document.body.removeChild(spinner);
-          
-          // Show confetti
-          showConfetti();
-          
-          // Reset form
-          document.getElementById('fullName').value = '';
-          document.getElementById('className').value = '';
-        }).catch(err => {
-          console.error("Error generating image:", err);
-          alert("Error generating download. Please try again.");
-          document.body.removeChild(tempContainer);
-          document.body.removeChild(spinner);
-        });
-      }, 1500); // Increased delay to ensure everything loads
-    }
+        onclone: (clonedDoc) => {
+          // Ensure fonts are applied in the cloned document
+          const style = clonedDoc.createElement('style');
+          style.textContent = `
+            @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+            .invitation-header {
+              font-family: 'Great Vibes', cursive !important;
+            }
+            .invitation-subheader {
+              font-family: 'Cinzel', serif !important;
+            }
+            .invitation-body, .invitation-footer, .event-item, .invitation-signature {
+              font-family: 'Playfair Display', serif !important;
+            }
+          `;
+          clonedDoc.head.appendChild(style);
+
+          // Replace logo with loaded image
+          const logos = clonedDoc.querySelectorAll('.logo');
+          logos.forEach(logo => {
+            logo.src = logoImage.src;
+            logo.crossOrigin = 'Anonymous';
+          });
+        }
+      }).then(canvas => {
+        // Download the image
+        const link = document.createElement('a');
+        const name = fullName.replace(/\s+/g, '-');
+        link.download = `impulse-2025-invitation-${name}.png`;
+        link.href = canvas.toDataURL('image/png', 1.0);
+        link.click();
+
+        // Increment counter and update localStorage
+        invitationCount++;
+        localStorage.setItem('invitationCount', invitationCount);
+        counterElement.textContent = `Invitations Generated: ${invitationCount}`;
+
+        // Clean up
+        document.body.removeChild(tempContainer);
+        document.body.removeChild(spinner);
+
+        // Show confetti
+        showConfetti();
+
+        // Reset form
+        document.getElementById('fullName').value = '';
+        document.getElementById('className').value = '';
+      }).catch(err => {
+        console.error("Error generating image:", err);
+        alert("Error generating download. Please try again.");
+        document.body.removeChild(tempContainer);
+        document.body.removeChild(spinner);
+      });
+    }, 2000); // Increased delay for better rendering
+  }
 
     function showConfetti() {
-      const colors = ['#6d0e3a', '#1a237e', '#d4af37', '#b71c1c', '#f8edeb'];
+      const colors = ['#8B0000', '#0D1B2A', '#FFD700', '#C71585', '#FFF8E7'];
       const container = document.querySelector('.container');
       
-      for (let i = 0; i < 80; i++) {
+      for (let i = 0; i < 100; i++) {
         const confetti = document.createElement('div');
         confetti.innerHTML = ['🌹', '✨', '🎉', '🌟', '💫'][Math.floor(Math.random() * 5)];
         confetti.style.position = 'fixed';
         confetti.style.left = Math.random() * 100 + 'vw';
         confetti.style.top = -20 + 'px';
-        confetti.style.fontSize = (Math.random() * 18 + 8) + 'px';
+        confetti.style.fontSize = (Math.random() * 20 + 10) + 'px';
         confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
         confetti.style.zIndex = '1000';
         confetti.style.pointerEvents = 'none';
         confetti.style.userSelect = 'none';
         confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        confetti.style.opacity = '0.8';
         container.appendChild(confetti);
         
-        const animationDuration = Math.random() * 3 + 2;
-        confetti.style.animation = `fall ${animationDuration}s linear forwards`;
+        const animationDuration = Math.random() * 3 + 2.5;
+        confetti.style.animation = `fall ${animationDuration}s ease-out forwards`;
         
         setTimeout(() => {
           confetti.remove();
@@ -684,14 +732,22 @@
       }
     }
 
-    const style = document.createElement('style');
-    style.innerHTML = `
-      @keyframes fall {
-        0% { opacity: 1; transform: translateY(0) rotate(0deg); }
-        100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
-      }
-    `;
-    document.head.appendChild(style);
+    // Inject confetti keyframes into the document head
+    (function() {
+      const style = document.createElement('style');
+      style.type = 'text/css';
+      style.appendChild(document.createTextNode(`
+        @keyframes fall {
+          0% { opacity: 0.8; transform: translateY(0) rotate(0deg); }
+          100% { opacity: 0; transform: translateY(120vh) rotate(720deg); }
+        }
+        @keyframes glowPulse {
+          0%, 100% { box-shadow: 0 0 15px var(--glow), 0 5px 15px rgba(0, 0, 0, 0.3); }
+          50% { box-shadow: 0 0 25px var(--glow), 0 8px 20px rgba(0, 0, 0, 0.4); }
+        }
+      `));
+      document.head.appendChild(style);
+    })();
   </script>
 </body>
 </html>
